@@ -1,0 +1,35 @@
+<module>
+  <inherits name="com.google.gwt.user.User"/>
+  <inherits name="com.google.gwt.inject.Inject"/>
+
+
+  <inherits name='com.gwtplatform.dispatch.rpc.DispatchRpc'/>
+  <inherits name='com.gwtplatform.mvp.MvpWithEntryPoint'/>
+  <inherits name="org.gwtbootstrap3.GwtBootstrap3"/>
+  <inherits name="org.fusesource.restygwt.RestyGWT"/>
+
+  <!-- https://github.com/ArcBees/gwtp-extensions/wiki/GinUiBinder -->
+  <!-- inherits name="com.google.gwt.uibinder.GinUiBinder"/ -->
+
+  <set-configuration-property name="gwtp.bootstrapper"
+                              value="com.bidding.client.gin.BootstrapperImpl" />
+
+  <inherits name="com.google.api.gwt.oauth2.OAuth2" />
+  <extend-configuration-property name="gin.ginjector.modules"
+    value="com.bidding.client.gin.ClientModule"/>
+<!--  <extend-configuration-property name="gin.ginjector.extensions"-->
+<!--                                 value="com.bidding.client.gin.MyGinjector"/>-->
+
+  <inherits name="com.google.gwt.uibinder.GinUiBinder"/>
+
+  <source path="client"/>
+  <source path="shared"/>
+
+  <public path=''>
+    <include name='*.css' />
+  </public>
+  <!-- theme -->
+  <stylesheet src='style.css' />
+
+  <!--<public path="public"/>-->
+</module>
