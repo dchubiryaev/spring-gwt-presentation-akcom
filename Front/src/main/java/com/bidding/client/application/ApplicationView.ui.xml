@@ -2,23 +2,20 @@
              xmlns:g='urn:import:com.google.gwt.user.client.ui'
              xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
 
-  <ui:with field="nameTokens" type="com.bidding.client.place.NameTokens"/>
-  <g:HTMLPanel>
+    <ui:with field="nameTokens" type="com.bidding.client.place.NameTokens"/>
+    <g:HTMLPanel>
 
-    <g:SimplePanel ui:field="main"/>
-    <b:Navbar position="FIXED_TOP" ui:field="bar">
-      <b:Container paddingRight="15" paddingLeft="15" >
-        <b:NavbarHeader>
-          <b:NavbarBrand>HOME</b:NavbarBrand>
-          <b:NavbarCollapseButton dataTarget="#navbar-collapse"/>
-        </b:NavbarHeader>
+        <g:SimplePanel ui:field="main"/>
+        <b:Navbar position="FIXED_TOP" ui:field="bar">
+            <b:Container paddingRight="15" paddingLeft="15">
+                <b:NavbarHeader>
+                    <b:NavbarBrand>HOME</b:NavbarBrand>
+                    <b:NavbarCollapseButton dataTarget="#navbar-collapse"/>
+                </b:NavbarHeader>
 
-        <b:NavbarCollapse b:id="navbar-collapse">
-          <b:NavbarNav>
-            <b:AnchorListItem targetHistoryToken="{nameTokens.getAdmin}">Admin</b:AnchorListItem>
-          </b:NavbarNav>
-        </b:NavbarCollapse>
-      </b:Container>
-    </b:Navbar>
-  </g:HTMLPanel>
+                <b:NavbarCollapse b:id="navbar-collapse">
+                </b:NavbarCollapse>
+            </b:Container>
+        </b:Navbar>
+    </g:HTMLPanel>
 </ui:UiBinder>

@@ -24,13 +24,6 @@ class ApplicationView extends ViewWithUiHandlers<ApplicationUiHandlers>
   @Inject
   ApplicationView(Binder uiBinder) {
     initWidget(uiBinder.createAndBindUi(this));
-//    bar.setVisible(false);
     bindSlot(ApplicationPresenter.SLOT_MAIN, main);
-  }
-
-  public void isLogin(Boolean isLogin) {
-    if(isLogin) {
-      bar.setVisible(true);
-    }
   }
 }
