@@ -8,6 +8,7 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 import com.gwtplatform.mvp.client.ViewWithUiHandlers;
 import org.fusesource.restygwt.client.Method;
@@ -43,17 +44,17 @@ public class FormView extends ViewWithUiHandlers<FormUiHandlers> implements Form
     public void saveClick(ClickEvent eventfirst) {
         consoleLog("Click " + fname.getValue() + lname.getValue() + isHuman.getFormValue());
 
-        FormService service = GWT.create(FormService.class);
         UserForm userForm = new UserForm(fname.getValue(), lname.getValue(), isHuman.getValue());
 
-        service.order(userForm, new MethodCallback<UserFormResponse>() {
-
-            public void onSuccess(Method method, UserFormResponse response) {
-                consoleLog("onSuccess : " + response.response);
+        FormService.execute().save(userForm, new MethodCallback<UserFormResponse>() {
+            @Override
+            public void onFailure(Method method, Throwable throwable) {
+                consoleLog("FAIL : " + throwable.getMessage());
             }
 
-            public void onFailure(Method method, Throwable exception) {
-                consoleLog("FAIL " + exception.getMessage());
+            @Override
+            public void onSuccess(Method method, UserFormResponse userFormResponse) {
+                Window.alert("Success " + userFormResponse.response + "/n id=" + userFormResponse.id);
             }
         });
     }
