@@ -3,6 +3,7 @@ package com.bidding.client.application.form;
 import com.bidding.client.service.FormService;
 import com.bidding.client.service.UserForm;
 import com.bidding.client.service.UserFormResponse;
+import com.google.appengine.api.users.User;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -46,15 +47,15 @@ public class FormView extends ViewWithUiHandlers<FormUiHandlers> implements Form
 
         UserForm userForm = new UserForm(fname.getValue(), lname.getValue(), isHuman.getValue());
 
-        FormService.execute().save(userForm, new MethodCallback<UserFormResponse>() {
+        FormService.execute().save(userForm, new MethodCallback<Integer>() {
             @Override
             public void onFailure(Method method, Throwable throwable) {
                 consoleLog("FAIL : " + throwable.getMessage());
             }
 
             @Override
-            public void onSuccess(Method method, UserFormResponse userFormResponse) {
-                Window.alert("Success " + userFormResponse.response + "/n id=" + userFormResponse.id);
+            public void onSuccess(Method method, Integer id) {
+                Window.alert("Success id:" + id);
             }
         });
     }
