@@ -1,16 +1,16 @@
 package com.dog.api.controllers;
 
-import com.dog.api.persistance.dao.UserFormDAO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collections;
 import java.util.List;
 
 @RestController
 public class FormController {
 
-    private UserFormDAO userFormDAO;
+    @Autowired
+    DataUtils dataBase;
 
     @GetMapping(path = "/")
     public String hello() {
@@ -18,15 +18,22 @@ public class FormController {
     }
 
     @PostMapping(path = "/save", produces = MediaType.APPLICATION_JSON_VALUE)
-    public UserFormResponse saveUserForm(@RequestBody UserForm form) {
-        System.out.println("POST DATA " + form.toString());
-//        Key<UserForm> userFormKey = userFormDAO.saveAndReturnKey(form);
-//        System.out.println(userFormKey.getId());
-        return new UserFormResponse("Response!", 1);
+    public int saveUserForm(@RequestBody UserForm form) {
+        return dataBase.save(form);
     }
 
     @GetMapping(path = "/get", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<UserForm> getUserForms() {
-        return Collections.emptyList();
+        return dataBase.getAll();
+    }
+
+    @GetMapping(path = "/get/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public UserForm getUserForms(@PathVariable Long id) {
+        return dataBase.getById(id);
+    }
+
+    @DeleteMapping(path = "/{id}")
+    public boolean delete(@PathVariable Long id){
+        return dataBase.deleteById(id);
     }
 }
