@@ -4,10 +4,7 @@ import com.google.gwt.core.client.GWT;
 import org.fusesource.restygwt.client.MethodCallback;
 import org.fusesource.restygwt.client.RestService;
 
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
+import javax.ws.rs.*;
 import java.util.List;
 
 public interface FormService extends RestService {
@@ -17,12 +14,12 @@ public interface FormService extends RestService {
               MethodCallback<Integer> callback);
 
     @GET
-    @Path("http://localhost:8081/get")
+    @Path("http://localhost:8081/all")
     void getAll(MethodCallback<List<UserForm>> callback);
 
     @GET
-    @Path("http://localhost:8081/get/")
-    void getById(Integer id, MethodCallback<List<UserForm>> callback);
+    @Path("http://localhost:8081/get")
+    void getById(@QueryParam("id") Integer id, MethodCallback<UserForm> callback);
 
     @DELETE
     @Path("http://localhost:8081")

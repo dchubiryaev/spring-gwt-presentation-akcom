@@ -22,18 +22,18 @@ public class FormController {
         return dataBase.save(form);
     }
 
-    @GetMapping(path = "/get", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(path = "/all", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<UserForm> getUserForms() {
         return dataBase.getAll();
     }
 
-    @GetMapping(path = "/get/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public UserForm getUserForms(@PathVariable Long id) {
+    @GetMapping(path = "/get", produces = MediaType.APPLICATION_JSON_VALUE)
+    public UserForm getUserForms(@RequestParam Integer id) {
         return dataBase.getById(id);
     }
 
-    @DeleteMapping(path = "/{id}")
-    public boolean delete(@PathVariable Long id){
+    @DeleteMapping()
+    public boolean delete(@RequestParam Integer id){
         return dataBase.deleteById(id);
     }
 }

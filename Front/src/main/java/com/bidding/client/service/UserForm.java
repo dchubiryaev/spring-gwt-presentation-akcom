@@ -11,6 +11,9 @@ public class UserForm {
         this.isHuman = isHuman;
     }
 
+    public UserForm() {
+    }
+
     @Override
     public String toString() {
         return "UserForm{" +

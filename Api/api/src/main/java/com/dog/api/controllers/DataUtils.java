@@ -23,8 +23,8 @@ public class DataUtils {
         return userForms.indexOf(form);
     }
 
-    public UserForm getById(Long id) {
-        return userForms.get(Math.toIntExact(id));
+    public UserForm getById(Integer id) {
+        return userForms.get(id);
     }
 
     public List<UserForm> getAll(){
@@ -35,7 +35,7 @@ public class DataUtils {
         return userForms.remove(form);
     }
 
-    public boolean deleteById(Long id){
+    public boolean deleteById(Integer id){
         return userForms.remove(id);
     }
 }
